@@ -1,8 +1,11 @@
+import Link from 'next/link';
+
 function StudentInfo() {
     return (
-        <main>
+        <div>
             <p>Name: Kyle Chau</p>
-            <p>Github Link: <link>https://github.com/KylesterChau/cprg306-assignments.git</link></p>
-        </main>
+            <p>Github Link: <Link href="https://github.com/KylesterChau/cprg306-assignments.git">https://github.com/KylesterChau/cprg306-assignments.git</Link></p>
+        </div>
     );
 }
+export default StudentInfo;
