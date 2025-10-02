@@ -1,4 +1,5 @@
 import Link from 'next/link';
+
 export default function Home() {
   return (
     <main>
@@ -9,6 +10,9 @@ export default function Home() {
         </div>
         <div>
           <Link href='/week-3'>Week 3</Link>
+        </div>
+                <div>
+          <Link href='/week-4'>Week 4</Link>
         </div>
       </div>
     </main>
