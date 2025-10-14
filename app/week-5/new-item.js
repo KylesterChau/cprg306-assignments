@@ -24,15 +24,15 @@ const item = {
 };
 
 return (
-        <form onSubmit={handleSubmit} className="border-2">
+        <form onSubmit={handleSubmit} className="border-2 rounded-lg p-6 max-w-md mx-auto">
                 <div className="flex flex-col">
                         <label for="itemName">Item Name</label>
-                        <input type="text" id="itemName" name="itemname" className="border-2" onChange={(event) => setName(event.target.value)} placeholder="eg. Milk" required/>
+                        <input type="text" id="itemName" name="itemname" className="border" onChange={(event) => setName(event.target.value)} placeholder="eg. Milk" required/>
                 </div>
                 <div>
                         <p>Quantity (1-20)</p>
                         <label for="quantity">Current: {quantity}</label>
-                        <div className="flex gap-4 mt-4 justify-center">
+                        <div className="flex gap-4 mt-4 m-3 justify-center">
                                 <button type="button" onClick={decrement} disabled={quantity === 1} className="w-14 h-14 flex items-center justify-center rounded-md border bg-red-600 hover:bg-gray-200 disabled:opacity-50 disabled:cursor-not-allowed text-xl font-bold">
                                         -
                                 </button>
@@ -43,7 +43,7 @@ return (
                 </div>
                 <div className="">
                         <label for="category">category:</label>
-                        <select id="category" name="category" className="border-2" onChange={(event) => setCategory(event.target.value)}>
+                        <select id="category" name="category" className="border" onChange={(event) => setCategory(event.target.value)}>
                                 <option value="produce">Produce</option>
                                 <option value="dairy">Dairy</option>
                                 <option value="bakery">Bakery</option>
