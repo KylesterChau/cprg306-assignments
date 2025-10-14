@@ -53,7 +53,7 @@ return (
                                 <option value="other">Other</option>
                         </select>
                 </div>
-                <button type="submit">Submit</button>
+                <button type="submit" className="border m-2 p-2">Submit</button>
         </form>
 );
 }
