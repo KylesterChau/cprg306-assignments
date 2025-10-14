@@ -1,6 +1,5 @@
 "use client";
 import { useState } from "react";
-import Item from "../week-3/item";
 
 export default function NewItem() {
     const [quantity, setQuantity] = useState(1);
@@ -15,15 +14,20 @@ export default function NewItem() {
 };
 function handleSubmit(event) {
   event.preventDefault();
-  const data = {};
-  alert(data);
+const item = {
+        name: name,
+        quantity: quantity,
+        category: category
+};
+  console.log(item);
+  alert(`Name: ${item.name}\nQuantity: ${item.quantity}\nCategory: ${item.category}`);
 };
 
 return (
         <form onSubmit={handleSubmit} className="border-2">
                 <div className="flex flex-col">
                         <label for="itemName">Item Name</label>
-                        <input type="text" id="name" name="name" className="border-2" required/>
+                        <input type="text" id="itemName" name="itemname" className="border-2" onChange={(event) => setName(event.target.value)} placeholder="eg. Milk" required/>
                 </div>
                 <div>
                         <p>Quantity (1-20)</p>
@@ -39,7 +43,7 @@ return (
                 </div>
                 <div className="">
                         <label for="category">category:</label>
-                        <select id="category" name="category" className="border-2">
+                        <select id="category" name="category" className="border-2" onChange={(event) => setCategory(event.target.value)}>
                                 <option value="produce">Produce</option>
                                 <option value="dairy">Dairy</option>
                                 <option value="bakery">Bakery</option>
