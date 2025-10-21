@@ -1,7 +1,5 @@
 
 export default function Item({ name, quantity, category }) {
-    const animations = ["animate-bounce", "animate-pulse", "animate-spin", "animate-ping"];
-    let animationType = Math.floor(Math.random() * 4);
 
     return (
         <ul>

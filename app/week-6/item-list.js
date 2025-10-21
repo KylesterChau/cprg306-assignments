@@ -1,76 +1,36 @@
+"use client";
+import items from "./items.json";
+import { useState } from "react";
 import Item from "./item";
 
 export default function ItemList() {
-    const items = [
-        {
-            name: "milk, 4 L 🥛",
-            quantity: 1,
-            category: "dairy",
-        },
-        {
-            name: "bread 🍞",
-            quantity: 2,
-            category: "bakery",
-        },
-        {
-            name: "eggs, dozen 🥚",
-            quantity: 2,
-            category: "dairy",
-        },
-        {
-            name: "bananas 🍌",
-            quantity: 6,
-            category: "produce",
-        },
-        {
-            name: "broccoli 🥦",
-            quantity: 3,
-            category: "produce",
-        },
-        {
-            name: "chicken breasts, 1 kg 🍗",
-            quantity: 1,
-            category: "meat",
-        },
-        {
-            name: "pasta sauce 🍝",
-            quantity: 3,
-            category: "canned goods",
-        },
-        {
-            name: "spaghetti, 454 g 🍝",
-            quantity: 2,
-            category: "dry goods",
-        },
-        {
-            name: "toilet paper, 12 pack 🧻",
-            quantity: 1,
-            category: "household",
-        },
-        {
-            name: "paper towels, 6 pack",
-            quantity: 1,
-            category: "household",
-        },
-        {
-            name: "dish soap 🍽️",
-            quantity: 1,
-            category: "household",
-        },
-        {
-            name: "hand soap 🧼",
-            quantity: 4,
-            category: "household",
-        }
-    ];
+
+    const [sortby, setSortby] = useState("name");
+
+    const sortedItems = () => {
+        return [...items].sort((a, b) => {
+            if (sortby === "name") {
+                return a.name.localeCompare(b.name);
+            } else if (sortby === "category") {
+                return a.category.localeCompare(b.category);
+            }
+        });
+    }
 
     return (
-        <ul>
-            <li>
-                {items.map((item, index) => (
-                <Item key={index} name={item.name} quantity={item.quantity} category={item.category}></Item> 
-            ))}
-            </li>
-        </ul>
+        <main>
+            <div className="flex gap-4 mt-4 justify-center">
+                <h1 className="text-white">Sort by: </h1>
+                <button onClick={() => {setSortby("name")}} disabled={sortby === "name"} className="w-25 h-14 flex items-center justify-center rounded-md border bg-blue-700 text-white hover:bg-gray-200 hover:text-black disabled:opacity-50 disabled:cursor-not-allowed text-xl font-bold">name</button>
+                <button onClick={() => {setSortby("category")}} disabled={sortby === "category"} className="w-25 h-14 flex items-center justify-center rounded-md border bg-blue-700 text-white hover:bg-gray-200 hover:text-black disabled:opacity-50 disabled:cursor-not-allowed text-xl font-bold">category</button>
+            </div>
+            <ul>
+                {sortedItems().map((item, id) => (
+                    <li key={id}>
+                        <Item name={item.name} quantity={item.quantity} category={item.category}></Item> 
+                    </li>
+                ))}
+            </ul>
+        </main>
     );
 }
