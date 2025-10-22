@@ -29,7 +29,7 @@ const item = {
 };
 
 return (
-        <form onSubmit={handleSubmit} className="border-2 rounded-lg p-6 max-w-md mx-auto">
+        <form onSubmit={handleSubmit} className="border-2 rounded-lg p-6 max-w-md mx-auto text-white">
                 <div className="flex flex-col">
                         <label htmlFor="itemName">Item Name</label>
                         <input type="text" id="itemName" name="nameOfItem" value={name} className="border" onChange={(event) => setName(event.target.value)} placeholder="eg. Milk" required/>

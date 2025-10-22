@@ -1,30 +1,31 @@
 "use client";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import Item from "./item";
 
 export default function ItemList({ items }) {
 
-    const [sortby, setSortby] = useState("name");
+    const [sortBy, setSortby] = useState("name");
+  const sortedItems = useMemo(() => {
     const itemList = [...items];
-    const sortedItems = () => {
-        return itemList.sort((a, b) => {
-            if (sortby === "name") {
-                return a.name.localeCompare(b.name);
-            } else if (sortby === "category") {
-                return a.category.localeCompare(b.category);
-            }
-        });
-    }
+    return itemList.sort((a, b) => {
+      if (sortBy === "name") {
+        return a.name.localeCompare(b.name);
+      } else if (sortBy === "category") {
+        return a.category.localeCompare(b.category);
+      }
+      return 0;
+    });
+  }, [items, sortBy]);
 
     return (
         <main>
             <div className="flex gap-4 mt-4 justify-center">
                 <h1 className="text-white">Sort by: </h1>
-                <button onClick={() => {setSortby("name")}} disabled={sortby === "name"} className="w-25 h-14 flex items-center justify-center rounded-md border bg-blue-700 text-white hover:bg-gray-200 hover:text-black disabled:opacity-50 disabled:cursor-not-allowed text-xl font-bold">name</button>
-                <button onClick={() => {setSortby("category")}} disabled={sortby === "category"} className="w-25 h-14 flex items-center justify-center rounded-md border bg-blue-700 text-white hover:bg-gray-200 hover:text-black disabled:opacity-50 disabled:cursor-not-allowed text-xl font-bold">category</button>
+                <button onClick={() => {setSortby("name")}} disabled={sortBy === "name"} className="w-25 h-14 flex items-center justify-center rounded-md border bg-blue-700 text-white hover:bg-gray-200 hover:text-black disabled:opacity-50 disabled:cursor-not-allowed text-xl font-bold">name</button>
+                <button onClick={() => {setSortby("category")}} disabled={sortBy === "category"} className="w-25 h-14 flex items-center justify-center rounded-md border bg-blue-700 text-white hover:bg-gray-200 hover:text-black disabled:opacity-50 disabled:cursor-not-allowed text-xl font-bold">category</button>
             </div>
             <ul>
-                {sortedItems().map((item, id) => (
+                {sortedItems.map((item, id) => (
                     <li key={id}>
                         <Item name={item.name} quantity={item.quantity} category={item.category}></Item> 
                     </li>
