@@ -31,17 +31,25 @@ export default function MealIdeas({ ingredient }) {
     
     return (
         <div>
-            <h2 className="text-center text-1.5xl font-bold text-white">
-                Meal Ideas for{" "}
-                {ingredient !== "" ? `"${ingredient}"` : "(Please select one)"}
-            </h2>
-            <ul>
-                {meals.map((meal) => (
-                    <li key={meal.idMeal} className="border-2 border-gray-700 rounded-lg m-2 p-2 flex flex-col items-center font-sans bg-gray-500 text-white">
-                        <h3 className="text-center">{meal.strMeal}</h3>
-                    </li>
-                ))}
-            </ul>
+        <h2 className="text-center text-xl font-bold text-white">
+            Meal Ideas for {ingredient ? `"${ingredient}"` : "(Please select one)"}
+        </h2>
+
+        <ul>
+            {meals.length === 0 ? (
+            <p className="text-white">No meals found</p>
+            ) : (
+            meals.map((meal) => (
+                <li
+                key={meal.idMeal}
+                className="border-2 border-gray-700 rounded-lg m-2 p-2 flex flex-col items-center font-sans bg-gray-500 text-white"
+                >
+                <h3 className="text-center">{meal.strMeal}</h3>
+                </li>
+            ))
+            )}
+        </ul>
         </div>
+
     );
 }
