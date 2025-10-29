@@ -48,7 +48,7 @@ return (
                 </div>
                 <div className="">
                         <label htmlFor="category">category:</label>
-                        <select id="category" name="category" className="border" onChange={(event) => setCategory(event.target.value)}>
+                        <select id="category" name="category" className="border bg-gray-700 text-white" onChange={(event) => setCategory(event.target.value)}>
                                 <option value="produce">Produce</option>
                                 <option value="dairy">Dairy</option>
                                 <option value="bakery">Bakery</option>
