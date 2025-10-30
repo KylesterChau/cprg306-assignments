@@ -1,8 +1,12 @@
 "use client";
 import { useUserAuth } from "./_utils/auth-context";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
-  const { user, gitHubSignIn, firebaseSignOut } = useUserAuth();
+  const { user, gitHubSignIn} = useUserAuth();
+  const router = useRouter();
+
   async function handleLogin() {
   try{
     await gitHubSignIn();
@@ -11,26 +15,18 @@ export default function Home() {
     console.error("Error during sign-in:", error);
   }
   }
-  async function handleLogout() {
-    try{
-      await firebaseSignOut();
-    }
-    catch(error){
-      console.error("Error during sign-out:", error);
-    }
-    }
 
+  useEffect(() => {
+    if (user) {
+      router.push("/week-9/shopping-list");
+    }
+  }, [user, router]);
   return (
     <div>
       {!user ? (
         <button onClick={handleLogin}>Login with GitHub</button>
       ) : (
-        <div>
-          <p>
-            Welcome, {user.displayName} ({user.email})
-          </p>
-          <button onClick={handleLogout}>Logout</button>
-        </div>
+      <></>
       )}
     </div>
   );
