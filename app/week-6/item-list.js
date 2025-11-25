@@ -6,16 +6,15 @@ import Item from "./item";
 export default function ItemList() {
 
     const [sortby, setSortby] = useState("name");
-
-    const sortedItems = () => {
-        return [...items].sort((a, b) => {
-            if (sortby === "name") {
-                return a.name.localeCompare(b.name);
-            } else if (sortby === "category") {
-                return a.category.localeCompare(b.category);
-            }
-        });
-    }
+    
+    const sortedItems = [...items].sort((a, b) => {
+        if (sortby === "name") {
+            return a.name.localeCompare(b.name);
+        } else if (sortby === "category") {
+            return a.category.localeCompare(b.category);
+        }
+        return 0;
+    });
 
     return (
         <main>
