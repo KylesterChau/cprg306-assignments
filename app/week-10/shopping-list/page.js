@@ -25,7 +25,7 @@ function handleItemSelect(item) {
   async function handleLogout() {
     try{
       await firebaseSignOut();
-      router.push("/week-9");
+      router.push("/week-10");
     }
     catch(error){
       console.error("Error during sign-out:", error);
